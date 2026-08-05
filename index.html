@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-layout">
+
+        <!-- ========================= -->
+        <!-- MAIN CALCULATOR -->
+        <!-- ========================= -->
+
+        <main class="calculator">
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <span class="theme-label">
+                    ☀️ / 🌙
+                </span>
+
+                <label class="theme-switch">
+
+                    <input type="checkbox" id="nightModeToggle">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <h1>Calculator</h1>
+
+            <p class="subtitle">
+                Bonus & Turnover Calculator
+            </p>
+
+
+            <!-- ========================= -->
+            <!-- MAIN MODE TOGGLE -->
+            <!-- ========================= -->
+
+            <div class="mode-toggle">
+
+                <button id="cashbackModeBtn" class="mode-btn active" type="button">
+                    Cashback Calculator
+                </button>
+
+                <button id="manualModeBtn" class="mode-btn" type="button">
+                    Manual Calculator
+                </button>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- CASHBACK CALCULATOR -->
+            <!-- ========================= -->
+
+            <section id="cashbackCalculator" class="calculator-mode">
+
+                <div class="input-group">
+
+                    <label for="cashbackDeposit">
+                        Deposit Amount (Taka)
+                    </label>
+
+                    <input type="number" id="cashbackDeposit" placeholder="Enter deposit amount" min="0" step="any">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="cashbackType">
+                        Deposit Type
+                    </label>
+
+                    <select id="cashbackType">
+
+                        <option value="1">
+                            1st Deposit — 100% Bonus / 20x
+                        </option>
+
+                        <option value="2">
+                            2nd Deposit — 50% Bonus / 15x
+                        </option>
+
+                        <option value="3">
+                            3rd Deposit — 30% Bonus / 15x
+                        </option>
+
+                        <option value="4">
+                            4th Deposit — 20% Bonus / 15x
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <p id="cashbackError" class="error-message"></p>
+
+
+                <div class="result">
+
+                    <div class="result-row">
+                        <span>Deposit</span>
+                        <strong id="cashbackDepositResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Bonus</span>
+                        <strong id="cashbackBonusResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Total Amount</span>
+                        <strong id="cashbackTotalResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Turnover</span>
+                        <strong id="cashbackMultiplierResult">20x</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="turnover">
+
+                    <p>Required Turnover</p>
+
+                    <h2 id="cashbackTurnoverResult">
+                        ৳0
+                    </h2>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!-- MANUAL CALCULATOR -->
+            <!-- ========================= -->
+
+            <section id="manualCalculator" class="calculator-mode hidden">
+
+                <div class="input-group">
+
+                    <label for="manualDeposit">
+                        Deposit Amount (Taka)
+                    </label>
+
+                    <input type="number" id="manualDeposit" placeholder="Enter deposit amount" min="0" step="any">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="manualBonus">
+                        Bonus Percentage (%)
+                    </label>
+
+                    <input type="number" id="manualBonus" placeholder="Example: 50" min="0" step="any">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="manualTurnover">
+                        Turnover (x)
+                    </label>
+
+                    <input type="number" id="manualTurnover" placeholder="Example: 15" min="0" step="any">
+
+                </div>
+
+
+                <p id="manualError" class="error-message"></p>
+
+
+                <div class="result">
+
+                    <div class="result-row">
+                        <span>Deposit</span>
+                        <strong id="manualDepositResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Bonus</span>
+                        <strong id="manualBonusResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Total Amount</span>
+                        <strong id="manualTotalResult">৳0</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Turnover</span>
+                        <strong id="manualMultiplierResult">0x</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="turnover">
+
+                    <p>Required Turnover</p>
+
+                    <h2 id="manualTurnoverResult">
+                        ৳0
+                    </h2>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!-- OTHER PROMOTIONS -->
+            <!-- ========================= -->
+
+            <section id="otherPromotions" class="calculator-mode hidden">
+
+                <div class="input-group">
+
+                    <label for="promotionAmount">
+                        Deposit Amount (Taka)
+                    </label>
+
+                    <input type="number" id="promotionAmount" placeholder="Enter deposit amount" min="0" step="any">
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="promotionType">
+                        Bonus Type
+                    </label>
+
+                    <select id="promotionType">
+
+                        <option value="lakshmi3">
+                            Lakshmi's Gifts — 3% Cashback
+                        </option>
+
+                        <option value="lakshmi5">
+                            Lakshmi's Gifts — 5% Cashback
+                        </option>
+
+                        <option value="lakshmi8">
+                            Lakshmi's Gifts — 8% Cashback
+                        </option>
+
+                        <option value="unlimited4">
+                            Unlimited Cashback — 4% VIP 2–VIP 5
+                        </option>
+
+                        <option value="rescue3">
+                            Rescue Fund — 3%
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Minimum deposit notice -->
+
+                <p id="promotionNotice" class="promotion-notice">
+                    Minimum deposit: ৳500
+                </p>
+
+
+                <div class="input-group">
+
+                    <label for="promotionTurnover">
+                        Turnover (x)
+                    </label>
+
+                    <input type="number" id="promotionTurnover" value="1" readonly>
+
+                </div>
+
+
+                <p id="promotionError" class="error-message"></p>
+
+
+                <div class="result">
+
+                    <div class="result-row">
+
+                        <span id="promotionBaseLabel">
+                            Deposit
+                        </span>
+
+                        <strong id="promotionBaseResult">
+                            ৳0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row">
+
+                        <span>Bonus</span>
+
+                        <strong id="promotionBonusResult">
+                            ৳0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row">
+
+                        <span>Total Amount</span>
+
+                        <strong id="promotionTotalResult">
+                            ৳0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-row">
+
+                        <span>Turnover</span>
+
+                        <strong id="promotionMultiplierResult">
+                            1x
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="turnover">
+
+                    <p>Required Turnover</p>
+
+                    <h2 id="promotionTurnoverResult">
+                        ৳0
+                    </h2>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ========================= -->
+            <!-- REFERRAL COMMISSION -->
+            <!-- ========================= -->
+
+            <section id="referralCommission" class="calculator-mode hidden">
+
+                <div class="input-group">
+
+                    <label for="commissionType">
+                        Commission Type
+                    </label>
+
+                    <select id="commissionType">
+
+                        <option value="deposit">
+                            Deposit Commission — 1.5%
+                        </option>
+
+                        <option value="betting">
+                            Betting Commission
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- DEPOSIT COMMISSION -->
+
+                <div id="depositCommissionInput" class="input-group">
+
+                    <label for="depositCommissionAmount">
+                        Deposit Amount (Taka)
+                    </label>
+
+                    <input type="number" id="depositCommissionAmount" placeholder="Enter deposit amount" min="0"
+                        step="any">
+
+                </div>
+
+
+                <!-- BETTING COMMISSION -->
+
+                <div id="bettingCommissionInputs" class="hidden">
+
+                    <div class="input-group">
+
+                        <label for="betAmount">
+                            Bet Amount (Taka)
+                        </label>
+
+                        <input type="number" id="betAmount" placeholder="Enter bet amount" min="0" step="any">
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="betTier">
+                            Tier
+                        </label>
+
+                        <select id="betTier">
+
+                            <option value="0.003">
+                                Tier 1 — 0.3%
+                            </option>
+
+                            <option value="0.0015">
+                                Tier 2 — 0.15%
+                            </option>
+
+                            <option value="0.0005">
+                                Tier 3 — 0.05%
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <p id="commissionError" class="error-message"></p>
+
+
+                <div class="commission-result">
+
+                    <p>Commission</p>
+
+                    <h2 id="commissionResult">
+                        ৳0
+                    </h2>
+
+                </div>
+
+            </section>
+
+
+            <p class="note">
+                Let me know if you had question by <a href="https://t.me/joshuasaulon" class="dm-bounce-btn"> Clicking
+                    me.</a>
+            </p>
+
+
+            <button id="clearBtn" type="button">
+                Clear
+            </button>
+
+        </main>
+
+
+
+        <!-- ========================= -->
+        <!-- RIGHT SIDE BAR -->
+        <!-- ========================= -->
+
+        <aside class="side-bar">
+
+            <div class="side-title">
+                Calculator Options
+            </div>
+
+
+            <button class="side-btn active" data-section="main" type="button">
+                🧮 Main Calculator
+            </button>
+
+
+            <button class="side-btn" data-section="other" type="button">
+                🎁 Other Promotions
+            </button>
+
+
+            <button class="side-btn" data-section="referral" type="button">
+                💰 Referral Commission
+            </button>
+
+        </aside>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
